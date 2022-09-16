@@ -12,12 +12,32 @@
   ],
   "inputSpec": [
     {
+      "name": "bam_file",
+      "label": "BAM file for a case",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*.bam"
+      ],
+      "help": ""
+    },
+    {
+      "name": "bam_index",
+      "label": "Index file for the case BAM",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*.bam.bai"
+      ],
+      "help": ""
+    },
+    {
       "name": "sites",
       "label": "File of genomic variant sites. Assumes 1-based positions.",
       "class": "file",
       "optional": false,
       "patterns": [
-        "*"
+        "*.bed"
       ],
       "help": ""
     },
@@ -27,7 +47,7 @@
       "class": "file",
       "optional": false,
       "patterns": [
-        "*"
+        "*fasta"
       ],
       "help": ""
     },
@@ -37,7 +57,7 @@
       "class": "file",
       "optional": false,
       "patterns": [
-        "*"
+        "*fasta.fai"
       ],
       "help": ""
     }
