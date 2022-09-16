@@ -33,7 +33,7 @@
     },
     {
       "name": "sites",
-      "label": "File of genomic variant sites. Assumes 1-based positions.",
+      "label": "File of genomic variant sites in BED format. Assumes 1-based positions.",
       "class": "file",
       "optional": false,
       "patterns": [

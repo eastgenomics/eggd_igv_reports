@@ -8,21 +8,33 @@ main() {
     mkdir bam
     mkdir references
     dx-download-all-inputs --parallel
-    # BAMs need to be in same directory as their index
+
+    # BAMs put in same directory as their index
+    bam_file_name=$(find ~/in/bam_file -type f -name "*" -print0) 
+    sample_id=$(echo "$bam_file_name" | cut -d "." -f 1 )
     find ~/in/bam_file -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/bam
     find ~/in/bam_index -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/bam
+
     # Put reference material in one dir
+    bed_name=$(find ~/in/sites -type f -name "*" -print0)
     find ~/in/sites -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/references
+    ref_genome_name=$(find ~/in/reference_genome -type f -name "*" -print0)
     find ~/in/reference_genome -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/references
     find ~/in/reference_index -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/references
-    
+
     mark-section "Installing packages"
     sudo -H python3 -m pip install --no-index --no-deps packages/*
 
-    # run IGV reports
+    mark-section "Run IGV reports"
+    create_report  ~/references/"$bed_name" \
+    --genome ~/references/"$ref_genome_name" \
+    --flanking 1000 \
+    --tracks ~/bam/"$bam_file_name" ~/references/"$ref_genome_name" \
+    --output ~/out/igv_reports/"$sample_id".html
 
-    # move results and output
-    report=$(dx upload report --brief)
-
-    dx-jobutil-add-output report "$report" --class=file
+    mark-section "Output the HTML file"
+    output_xlsx=$(dx upload /home/dnanexus/out/igv_reports/* --brief)
+    dx-jobutil-add-output xlsx_report "$output_xlsx" --class=file
+	
+    mark-success
 }
