@@ -18,18 +18,15 @@ main() {
     # Put reference material in one dir
     bed_name=$(find ~/in/sites -type f -name "*" -print0)
     find ~/in/sites -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/references
-    ref_genome_name=$(find ~/in/reference_genome -type f -name "*" -print0)
-    find ~/in/reference_genome -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/references
-    find ~/in/reference_index -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/references
 
     mark-section "Installing packages"
     sudo -H python3 -m pip install --no-index --no-deps packages/*
 
     mark-section "Run IGV reports"
     create_report  ~/references/"$bed_name" \
-    --genome ~/references/"$ref_genome_name" \
+    --genome "$reference_genome" \
     --flanking 1000 \
-    --tracks ~/bam/"$bam_file_name" ~/references/"$ref_genome_name" \
+    --tracks ~/bam/"$bam_file_name" \
     --output ~/out/igv_reports/"$sample_id".html
 
     mark-section "Output the HTML file"
