@@ -12,9 +12,9 @@
   ],
   "inputSpec": [
     {
-      "name": "bam_file",
-      "label": "BAM file for a case",
-      "class": "file",
+      "name": "bam_files",
+      "label": "Array of BAM files, one per case",
+      "class": "array:file",
       "optional": false,
       "patterns": [
         "*.bam"
@@ -22,9 +22,9 @@
       "help": ""
     },
     {
-      "name": "bam_index",
-      "label": "Index file for the case BAM",
-      "class": "file",
+      "name": "bam_indices",
+      "label": "Array of index files for BAMs, one per case",
+      "class": "array:file",
       "optional": false,
       "patterns": [
         "*.bam.bai"
@@ -33,7 +33,7 @@
     },
     {
       "name": "sites",
-      "label": "File of genomic variant sites in BED format. Assumes 1-based positions.",
+      "label": "File of genomic variant sites in BED format. Assumes 1-based positions",
       "class": "file",
       "optional": false,
       "patterns": [
@@ -43,30 +43,20 @@
     },
     {
       "name": "reference_genome",
-      "label": "A reference genome in FASTA format",
-      "class": "file",
+      "label": "The name of an IGV reference genome - options are hg19 and hg38",
+      "class": "string",
       "optional": false,
       "patterns": [
-        "*fasta"
-      ],
-      "help": ""
-    },
-    {
-      "name": "reference_index",
-      "label": "The index file for the reference genome",
-      "class": "file",
-      "optional": false,
-      "patterns": [
-        "*fasta.fai"
+        "hg*"
       ],
       "help": ""
     }
   ],
   "outputSpec": [
     {
-      "name": "report",
-      "label": "The report produced by IGV Reports",
-      "class": "file",
+      "name": "reports",
+      "label": "The reports produced by IGV Reports",
+      "class": "array:file",
       "patterns": [
         "*"
       ],
