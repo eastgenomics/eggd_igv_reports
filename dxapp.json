@@ -1,5 +1,5 @@
 {
-  "name": "igv_reports",
+  "name": "eggd_igv_reports",
   "title": "IGV Reports",
   "summary": "Uses the IGV Reports package to create IGV-style image reports of user-requested genomic regions.",
   "dxapi": "1.0.0",
