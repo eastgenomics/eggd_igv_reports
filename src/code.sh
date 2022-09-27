@@ -10,8 +10,8 @@ main() {
     dx-download-all-inputs --parallel
 
     # BAMs and BAIs put in same directory as their index
-    find ~/in/bam_file -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/bam
-    find ~/in/bam_index -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/bam
+    find ~/in/bam_files -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/bam
+    find ~/in/bam_indices -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/bam
 
     #TODO sense-check the BAM and BAI names
 
