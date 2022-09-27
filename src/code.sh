@@ -20,7 +20,7 @@ main() {
     find ~/in/sites -type f -name "*" -print0 | xargs -0 -I {} mv {} ~/references
 
     mark-section "Installing igv-reports and packages from wheels"
-    sudo python3 -m pip install --upgrade pip
+    sudo -H python3 -m pip install --upgrade pip
     sudo -H python3 -m pip install --no-index --no-deps packages/*
 
     mark-section "Generate an IGV report for each sample"
