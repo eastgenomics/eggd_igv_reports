@@ -1,7 +1,7 @@
 #!/bin/bash
 
 main() {
-    set -exo pipeline 
+    set -e -x -v -o pipefail 
     export PATH=$PATH:/home/dnanexus/.local/bin  # pip installs some packages here, add to path
 
     mark-section "Download the input files"
